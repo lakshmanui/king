@@ -7,7 +7,6 @@ import Recording from "../components/Recording";
 import ListenRecording from "../components/ListenRecord";
 
 const PlayerSection: React.FC = () => {
-  const [stream, setStream] = useState<MediaStream>();
   const [blob, setBlob] = useState<any>();
   const [playerActions, setPlayerActions] = useState({
     start: true,
@@ -18,6 +17,7 @@ const PlayerSection: React.FC = () => {
   const [counter, setCounter] = useState(5);
   const [showTimerWarning, setShowTimerWarning] = useState(false);
 
+  const stream = useRef<MediaStream>();
   const recorderRef = useRef<RecordRTC>();
   let closeTimer: NodeJS.Timer;
 
@@ -25,7 +25,7 @@ const PlayerSection: React.FC = () => {
     const mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
     });
-    setStream(mediaStream);
+    stream.current = mediaStream;
     setPlayerActions({
       ...playerActions,
       start: false,
@@ -69,9 +69,16 @@ const PlayerSection: React.FC = () => {
     recorderRef?.current?.resumeRecording();
   };
 
+  const closeStream = () => {
+    stream?.current?.getTracks().forEach(function (track) {
+      track.stop();
+    });
+  };
+
   const finishRecording = () => {
     clearInterval(closeTimer);
     setShowTimerWarning(false);
+    closeStream();
     recorderRef?.current?.stopRecording(() => {
       setBlob(recorderRef?.current?.getBlob());
       setPlayerActions({
@@ -84,7 +91,11 @@ const PlayerSection: React.FC = () => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ backgroundColor: "#300042", height: "350px" }}
+    >
       <Grid
         item
         xs={12}
@@ -97,46 +108,26 @@ const PlayerSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {showTimerWarning ? (
-          <Grid
-            item
-            xs={10}
-            sm={6}
-            md={3}
-            lg={3}
-            xl={3}
-            sx={{ textAlign: "center" }}
-          >
-            <Typography variant="h6" component="div">
-              Recording will stop in {counter} sec
-            </Typography>
-          </Grid>
-        ) : null}
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        lg={12}
-        xl={12}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Grid
-          item
-          xs={10}
-          sm={6}
-          md={3}
-          lg={3}
-          xl={4}
-          sx={{
-            backgroundColor: "#300042",
-            padding: "50px",
-          }}
-        >
+        <Grid item xs={10} sm={6} md={3} lg={3} xl={4}>
+          {showTimerWarning ? (
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              sx={{
+                textAlign: "center",
+                marginTop: "20px",
+                marginBottom: "20px",
+              }}
+            >
+              <Typography variant="h6" component="div" color="inherit">
+                Recording will stop in {counter} sec
+              </Typography>
+            </Grid>
+          ) : null}
           {playerActions.start ? (
             <Record startRecording={startRecording}></Record>
           ) : null}

@@ -11,29 +11,101 @@ type Props = {
 
 const Recording: React.FC<Props> = (props: Props) => {
   return (
-    <Grid container direction="column" alignItems="center">
-      <Grid item>
+    <Grid container spacing={2}>
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        sx={{
+          marginTop: "20px",
+          marginBottom: "20px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <MicOutlined fontSize="large" color="primary"></MicOutlined>
       </Grid>
       <Grid
-        item
         container
-        direction="row"
-        justifyContent="space-between"
-        sx={{ width: "100%" }}
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        sx={{ marginTop: "20px", marginBottom: "20px" }}
       >
         {props.pause ? (
-          <Button variant="contained" onClick={props.resumeRecording}>
-            Resume
-          </Button>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            lg={6}
+            xl={6}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={props.resumeRecording}
+              size="large"
+            >
+              Resume
+            </Button>
+          </Grid>
         ) : (
-          <Button variant="contained" onClick={props.pauseRecording}>
-            Pause
-          </Button>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            lg={6}
+            xl={6}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={props.pauseRecording}
+              size="large"
+            >
+              Pause
+            </Button>
+          </Grid>
         )}
-        <Button variant="contained" onClick={props.finishRecording}>
-          Finish
-        </Button>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={props.finishRecording}
+            size="large"
+          >
+            Finish
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );

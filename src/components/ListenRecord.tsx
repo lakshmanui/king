@@ -7,14 +7,20 @@ type Props = {
 
 const ListenRecording: React.FC<Props> = (props: Props) => {
   return (
-    <Grid container direction="column" alignItems="center">
+    <Grid container spacing={2}>
       <Grid
         item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
         sx={{
           display: "flex",
           justifyContent: "center",
           width: "200px",
-          marginBottom: "40px",
+          marginBottom: "20px",
+          marginTop:"20px"
         }}
       >
         <video
@@ -23,15 +29,39 @@ const ListenRecording: React.FC<Props> = (props: Props) => {
           style={{ height: "60px", width: "300px" }}
         />
       </Grid>
-      <Grid
-        item
-        container
-        direction="row"
-        justifyContent="space-between"
-        sx={{ width: "100%" }}
-      >
-        <Button variant="contained">Listen</Button>
-        <Button variant="contained">StartOver</Button>
+      <Grid item container>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <Button variant="contained">Listen</Button>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <Button variant="contained">StartOver</Button>
+        </Grid>
       </Grid>
     </Grid>
   );

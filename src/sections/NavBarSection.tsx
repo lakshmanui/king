@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppBar, Link, Toolbar, Typography } from "@mui/material";
 
-import PartnershipModal from "../modals/PartnershipModal";
-
 const NavbarSection: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
-
   return (
     <React.Fragment>
       <AppBar position="static">
@@ -20,15 +14,11 @@ const NavbarSection: React.FC = () => {
           >
             ally
           </Typography>
-          <Link href="#" color="primary" onClick={handleOpen}>
+          <Link href="#" color="primary">
             PARTNERSHIP
           </Link>
         </Toolbar>
       </AppBar>
-      <PartnershipModal
-        open={open}
-        handleClose={handleClose}
-      ></PartnershipModal>
     </React.Fragment>
   );
 };
