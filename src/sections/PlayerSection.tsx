@@ -91,60 +91,77 @@ const PlayerSection: React.FC = () => {
   };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{ backgroundColor: "#300042", height: "350px" }}
-    >
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        lg={12}
-        xl={12}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Grid item xs={10} sm={6} md={3} lg={3} xl={4}>
-          {showTimerWarning ? (
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={12}
-              lg={12}
-              xl={12}
-              sx={{
-                textAlign: "center",
-                marginTop: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              <Typography variant="h6" component="div" color="inherit">
-                Recording will stop in {counter} sec
-              </Typography>
-            </Grid>
-          ) : null}
-          {playerActions.start ? (
-            <Record startRecording={startRecording}></Record>
-          ) : null}
-          {playerActions.stop ? (
-            <Recording
-              resumeRecording={resumeRecording}
-              pauseRecording={pauseRecording}
-              finishRecording={finishRecording}
-              pause={playerActions.pause}
-            ></Recording>
-          ) : null}
-          {playerActions.play ? (
-            <ListenRecording url={URL.createObjectURL(blob)}></ListenRecording>
-          ) : null}
-        </Grid>
-      </Grid>
-    </Grid>
+    <React.Fragment>
+      {playerActions.start ? (
+        <Record startRecording={startRecording}></Record>
+      ) : null}
+      {playerActions.stop ? (
+        <Recording
+          resumeRecording={resumeRecording}
+          pauseRecording={pauseRecording}
+          finishRecording={finishRecording}
+          pause={playerActions.pause}
+        ></Recording>
+      ) : null}
+      {playerActions.play ? (
+        <ListenRecording url={URL.createObjectURL(blob)}></ListenRecording>
+      ) : null}
+    </React.Fragment>
+
+    // <Grid
+    //   container
+    //   spacing={2}
+    //   sx={{ backgroundColor: "#300042", height: "350px" }}
+    // >
+    //   <Grid
+    //     item
+    //     xs={12}
+    //     sm={12}
+    //     md={12}
+    //     lg={12}
+    //     xl={12}
+    //     sx={{
+    //       display: "flex",
+    //       justifyContent: "center",
+    //     }}
+    //   >
+    //     <Grid item xs={10} sm={6} md={3} lg={3} xl={4}>
+    //       {showTimerWarning ? (
+    //         <Grid
+    //           item
+    //           xs={12}
+    //           sm={12}
+    //           md={12}
+    //           lg={12}
+    //           xl={12}
+    //           sx={{
+    //             textAlign: "center",
+    //             marginTop: "20px",
+    //             marginBottom: "20px",
+    //           }}
+    //         >
+    //           <Typography variant="h6" component="div" color="inherit">
+    //             Recording will stop in {counter} sec
+    //           </Typography>
+    //         </Grid>
+    //       ) : null}
+    //       {playerActions.start ? (
+    //         <Record startRecording={startRecording}></Record>
+    //       ) : null}
+    //       {playerActions.stop ? (
+    //         <Recording
+    //           resumeRecording={resumeRecording}
+    //           pauseRecording={pauseRecording}
+    //           finishRecording={finishRecording}
+    //           pause={playerActions.pause}
+    //         ></Recording>
+    //       ) : null}
+    //       {playerActions.play ? (
+    //         <ListenRecording url={URL.createObjectURL(blob)}></ListenRecording>
+    //       ) : null}
+    //     </Grid>
+    //   </Grid>
+    // </Grid>
   );
 };
 export default PlayerSection;

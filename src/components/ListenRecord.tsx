@@ -7,7 +7,11 @@ type Props = {
 
 const ListenRecording: React.FC<Props> = (props: Props) => {
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ backgroundColor: "#300042", borderRadius: "20px" }}
+    >
       <Grid
         item
         xs={12}
@@ -20,7 +24,7 @@ const ListenRecording: React.FC<Props> = (props: Props) => {
           justifyContent: "center",
           width: "200px",
           marginBottom: "20px",
-          marginTop:"20px"
+          marginTop: "20px",
         }}
       >
         <video

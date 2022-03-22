@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import { Box } from "@mui/material";
-
-import PartnershipModal from "./modals/PartnershipModal";
+import React from "react";
 
 import NavbarSection from "./sections/NavBarSection";
-import PartnershipSection from "./sections/PartnershipSection";
-import PlayerSection from "./sections/PlayerSection";
+import ImageCardComponent from "./sections/ImageCard";
+import HearYouComponent from "./sections/HearYou";
 
 import "./App.css";
 
 const App: React.FC = () => {
-  const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <React.Fragment>
       <NavbarSection></NavbarSection>
-      <PartnershipSection></PartnershipSection>
-      <PlayerSection></PlayerSection>
-      <PartnershipModal
-        open={open}
-        handleClose={handleClose}
-      ></PartnershipModal>
-    </Box>
+      <ImageCardComponent></ImageCardComponent>
+      <HearYouComponent></HearYouComponent>
+    </React.Fragment>
+
+    // <Box sx={{ flexGrow: 1 }}>
+
+    //   <PartnershipSection></PartnershipSection>
+    //   <PlayerSection></PlayerSection>
+    //   <PartnershipModal
+    //     open={open}
+    //     handleClose={handleClose}
+    //   ></PartnershipModal>
+    // </Box>
   );
 };
 
